@@ -32,3 +32,9 @@ while menu != 6:
 
         print()
         menu=funcion()
+
+    if menu == 3:
+        funciones_json.buscador(datos)
+
+        print()
+        menu=funcion()
