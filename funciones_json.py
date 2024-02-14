@@ -1,10 +1,31 @@
-def volver():
-    volver=input('''
-Pulsa INTRO para volver al menú''')
-    if volver == "":
-        seguir=False
-    return seguir
+def funcion():
+    while True:
+        try:
+            menu=int(input('''Menú
+==============================================================================
+1. Lista de ámbitos geográficos para los que hay registro
+2. Número de registros para cada ámbito geográfico
+3. Consulta de la tasa de paro por ámbito geográfico y grupo de edad
+4. Consulta de ámbitos geográficos dentro de un rango
+5. Consulta del dato mayor y menor de cada ámbito geográfico y grupo de edad
+6. Salir
 
+'''))
+            break
+        except:
+            print("Error. Usa un número de la lista para elegir una función del siguiente menú:")
+    return menu
+
+def volver():
+    while True:
+        volver=input('''
+Pulsa INTRO para volver al menú''')
+        if volver == "":
+            seguir=False
+            break
+        else:
+            print("¿Te has confundido de tecla?")
+    return seguir
 
 def listaambitos(a):
     seguir=True
