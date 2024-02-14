@@ -117,3 +117,68 @@ Año    Trimestre        Dato
             print()
 
         seguir=volver()
+
+def intervalo(a):
+    seguir=True
+    while seguir:
+        min=float(input('''
+Indica el dato menor: '''))
+        max=float(input("Indica el dato mayor: "))
+
+        ambitos=[]
+        for elemento in a:
+            for i in elemento["Data"]:
+                valor=i["Valor"]
+                if valor:
+                    if valor > 0:
+                        if float(valor) > min and float(valor) < max:
+                            for i in elemento["MetaData"]:
+                                if i["Variable"]["Codigo"] == "CCAA" or i["Variable"]["Codigo"] == "NAC":
+                                    ambito=i["Nombre"]
+                                    if ambito not in ambitos:
+                                        ambitos.append(ambito)
+
+        if len(ambitos) == 0:
+            print("No hay registros entre %.2f y %.2f para ningún ámbito geográfico."%(min,max))
+        elif len(ambitos) == 1:
+            print("Hay valores registrados entre %.2f y %.2f para el ámbito geográfico "%(min,max),end='')
+            for ambito in ambitos:
+                print(ambito)
+        else:
+            print("Los ámbitos en los que hay valores registrados entre %.2f y %.2f son: "%(min,max))
+            for ambito in ambitos:
+                print(ambito)
+        
+        seguir=volver()
+
+def limites(a):
+    seguir=True
+    while seguir:
+        max=0
+        min=100
+        for elemento in a:
+            for i in elemento["Data"]:
+                valor=i["Valor"]
+                if valor:
+                    if valor > max:
+                        max = valor
+                        añomax = i["Anyo"]
+                        trimestremax = i["T3_Periodo"]
+                        for i in elemento["MetaData"]:
+                            if i["Variable"]["Codigo"] == "CCAA" or i["Variable"]["Codigo"] == "NAC":
+                                ambitomax=i["Nombre"]
+                            elif i["Variable"]["Nombre"] == "Semiintervalos de edad" or i["Variable"]["Nombre"] == "Totales de edad" or i["Variable"]["Nombre"] == "Grupos de edad":
+                                edadmax=i["Nombre"]
+                    elif valor < min:
+                        min = valor
+                        añomin = i["Anyo"]
+                        trimestremin = i["T3_Periodo"]
+                        for i in elemento["MetaData"]:
+                            if i["Variable"]["Codigo"] == "CCAA" or i["Variable"]["Codigo"] == "NAC":
+                                ambitomin=i["Nombre"]
+                            elif i["Variable"]["Nombre"] == "Semiintervalos de edad" or i["Variable"]["Nombre"] == "Totales de edad" or i["Variable"]["Nombre"] == "Grupos de edad":
+                                edadmin=i["Nombre"]
+
+        print("La tasa de paro más alta es del ",max,"% y se registró en el trimestre ",trimestremax," del año ",añomax," en el ámbito geográfico ",ambitomax," para el grupo de edad ",edadmax,". \nLa tasa de paro más alta es del ",min,"% y se registró en el trimestre ",trimestremin," del año ",añomin," en el ámbito geográfico ",ambitomin," para el grupo de edad",edadmin,".")
+
+        seguir=volver()

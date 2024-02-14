@@ -38,3 +38,15 @@ while menu != 6:
 
         print()
         menu=funcion()
+
+    if menu == 4:
+        funciones_json.intervalo(datos)
+
+        print()
+        menu=funcion()
+
+    if menu == 5:
+        funciones_json.limites(datos)
+
+        print()
+        menu=funcion()
