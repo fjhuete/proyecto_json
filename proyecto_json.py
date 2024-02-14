@@ -5,7 +5,9 @@ with open("TasaParo.json") as f:
 
 #Menú
 def funcion():
-    menu=int(input('''Menú
+    while True:
+        try:
+            menu=int(input('''Menú
 ==============================================================================
 1. Lista de ámbitos geográficos para los que hay registro
 2. Número de registros para cada ámbito geográfico
@@ -15,11 +17,18 @@ def funcion():
 6. Salir
 
 '''))
+            break
+        except:
+            print("Error. Usa un número de la lista para elegir una función del siguiente menú:")
     return menu
 
 menu=funcion()
 
 while menu != 6:
+
+    if menu > 6 or menu < 0:
+        print("Error. Usa un número de la lista para elegir una función del siguiente menú:")
+        menu=funcion()
 
     if menu == 1:
         funciones_json.listaambitos(datos)

@@ -95,15 +95,30 @@ Elige uno de los siguientes rangos de edades: ''')
                                 respuestas.append(respuesta)
             return respuestas
 
-        ambito=ambitos()
-        a=int(input('''
+        while True:
+            try:
+                while True:    
+                    try:
+                        ambito=ambitos()
+                        a=int(input('''
 '''))
+                        break
+                    except:
+                        print("Dato erróneo, por favor, indica un número de la lista.")
 
-        edad=edades()
-        b=int(input('''
+                while True:
+                    try:
+                        edad=edades()
+                        b=int(input('''
 '''))
+                        break
+                    except:
+                        print("Dato erróneo. Por favor, indica un número de la lista.")
 
-        respuestas=recopilar()
+                respuestas=recopilar()
+                break
+            except:
+                print("Los número introducidos no se corresponden a ningún registro. Por favor, elija una de las opciones de cada lista.")
 
         print('''
 Datos de paro para el ámbito geográfico "%s" y el rango de edad "%s":
@@ -121,9 +136,20 @@ Año    Trimestre        Dato
 def intervalo(a):
     seguir=True
     while seguir:
-        min=float(input('''
+        while True:
+            try:
+                min=float(input('''
 Indica el dato menor: '''))
-        max=float(input("Indica el dato mayor: "))
+                break
+            except:
+                print("Dato erróneo. Si quieres consultar un número con decimales asegúrate de usar un punto (.) para separar ambas partes del número.")
+        while True:
+            try:        
+                max=float(input("Indica el dato mayor: "))
+                break
+            except:
+                print("Dato erróneo. Si quieres consultar un número con decimales asegúrate de usar un punto (.) para separar ambas partes del número.")
+
 
         ambitos=[]
         for elemento in a:
