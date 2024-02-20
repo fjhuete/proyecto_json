@@ -57,9 +57,17 @@ def registros(a):
                     if ambito not in ambitos:
                         ambitos.append(ambito)
                     registros.append(len(elemento["Data"]))
-        print()
+        print('''
+Ámbito geográfico           Registros
+======================================''')
         for ambito,registro in zip(ambitos,registros):
-            print('''Para "%s" hay %d registros'''%(ambito,registro))
+            print(ambito," "*(33-len(ambito)),registro)
+        print('''======================================
+
+Total
+=====
+''',
+sum(registros)," registros.")
 
         seguir=volver()
 
